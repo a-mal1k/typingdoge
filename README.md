@@ -1,7 +1,7 @@
-# About TypingSpeed
+# About TypingDoge
 
 -> this is a simple typing page where you can track your typing speed. 
--> this is made as a part of learning ( to create custom hooks )
+-> this is made as a part of learning ( to create custom react hooks )
 --------------------------------------------------------------------
 # Project setup #
 
