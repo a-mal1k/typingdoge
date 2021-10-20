@@ -1,7 +1,7 @@
 import {useState,useEffect, useRef} from "react"
 
 function useTypingDoge(){
-    const STARTING_TIME = 60
+    const STARTING_TIME = 10
     
     const [text, setText] = useState("")
     const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME)
@@ -13,36 +13,44 @@ function useTypingDoge(){
         const {value} = e.target
         setText(value)
     }
-    
-    function calculateWordCount(text) {
+    function calculateWordCount() {
         const wordsArr = text.trim().split(" ")
         return wordsArr.filter(word => word !== "").length
     }
+    
     useEffect(() => {
+       
         if(isTimeRunning && timeRemaining > 0) {
             setTimeout(() => {
                 setTimeRemaining(time => time - 1)
             }, 1000)
         } else if(timeRemaining === 0) {
-            endGame()
-
-        }
-    }, [timeRemaining, isTimeRunning])
+                return end();
+        }  
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [timeRemaining,isTimeRunning])
     
-    function startGame() {
+    function start() {
+        setWordCount(0)
         setIsTimeRunning(true)
         setTimeRemaining(STARTING_TIME)
         setText("")
         textBoxRef.current.disabled = false
         textBoxRef.current.focus()
     }
-    
-    function endGame() {
+    function end(){
         setIsTimeRunning(false)
-        setWordCount(calculateWordCount(text))
+        setWordCount(calculateWordCount())
+    }
+    function reset(){
+        setWordCount(0);
+        setText("");
+        setIsTimeRunning(false);
+        setTimeRemaining(0)
     }
     
-    return [textBoxRef, handleChange,text,timeRemaining,startGame,isTimeRunning,wordCount]
+    return [textBoxRef, handleChange,text,timeRemaining,start, reset,isTimeRunning,wordCount]
     
 }
 export default useTypingDoge;
+
