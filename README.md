@@ -1,3 +1,12 @@
+# About TypingSpeed
+
+-> this is a simple typing page where you can track your typing speed. 
+-> this is made as a part of learning ( to create custom hooks )
+--------------------------------------------------------------------
+# Project setup #
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
